@@ -23,6 +23,10 @@
         
         <section>
             <div class="content">
+            	<div class="barra-op">
+            		<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Novo Setor</button>
+            		<button onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Cadastra Funcionario</button>
+            	</div>
             	<div class="clear"></div>
 	                <input type="text" id="filtro_tabela" placeholder="Buscar nesta lista" />
 	
@@ -64,11 +68,38 @@
 	                </table>
 	                <br>
 	                <div id="pageNav"></div>
+	                
+	               <div id="id01" class="modal">
+					  <jsp:include page="/componets/SetorForm.html"/>
+				</div>
+				
+				<div id="id02" class="modal">
+					  <jsp:include page="/componets/FuncionarioForm.jsp"/>
+				</div>
             </div>
         </section>
        	<jsp:include page="/componets/footer.html"/>
 </div>
         <script src="<c:url value="/assets/js/Scripts.js"/>"></script>
-            
+        <script>
+			// Get the modal
+			var modal = document.getElementById('id01');
+			
+			// When the user clicks anywhere outside of the modal, close it
+			window.onclick = function(event) {
+			    if (event.target == modal) {
+			        modal.style.display = "none";
+			    }
+			}
+			
+			var modal2 = document.getElementById('id02');
+			
+			//When the user clicks anywhere outside of the modal, close it
+			window.onclick = function(event) {
+			 if (event.target == modal2) {
+				 modal2.style.display = "none";
+			 }
+			}
+		</script>
     </body>
 </html>

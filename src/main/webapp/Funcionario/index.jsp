@@ -15,7 +15,7 @@
 </head>
     <body>
         <nav class="nav nav-aberta">
-             <jsp:include page="/Funcionario/componets/menu.html"/>
+             <jsp:include page="/Funcionario/componets/menu.jsp"/>
         </nav>
         <div class="contentudo">
       

@@ -7,7 +7,7 @@
                 <ul class="listNav">
                     <li>
                         <a 
-                        <% if(request.getRequestURI().equals(URL+"index.jsp")){ %>
+                        <% if(request.getRequestURI().equals(URL+"index.jsp")  || request.getRequestURI().equals(URL)){ %>
                         class="active" 
                         <%} %>
                         href="index.jsp">
