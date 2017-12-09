@@ -35,7 +35,7 @@ public class CategoriaDAO {
 		try {
 			stmt = con.prepareStatement("INSERT INTO categoria (nomeCategoria) VALUES (?)");
 			stmt.setString(2, novaCategoria.getNomeCategoria());
-			stmt.execute();
+			stmt.executeUpdate();
 		} catch (Exception e) {
 			Logger.getLogger(CategoriaDAO.class.getName()).log(Level.SEVERE, null, e);
 		}
@@ -65,6 +65,27 @@ public class CategoriaDAO {
 		
 	}
 	
+	public int fornecedorSizeSetror(int idcat){
+		int quantidade = 0;
+		Connection con = dao.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet rs =null;
+		try {
+			stmt= con.prepareStatement("SELECT COUNT(*) AS qtd  FROM fornecedor where idcat = "+idcat+";");
+			rs = stmt.executeQuery();
+			while(rs.next()) {
+				quantidade = rs.getInt("qtd");
+				
+			}
+			
+			
+		} catch(SQLException e) {
+			Logger.getLogger(SetorDAO.class.getName()).log(Level.SEVERE, null, e);
+		}finally {
+			ConnectionFactory.closeConnection(con, stmt, rs);
+		}
+		return quantidade;
+	}
 	
 	
 	

@@ -16,6 +16,7 @@
 	 <script src="<c:url value="/assets/js/jquery-form.js"/>"></script>
 </head>
     <body>
+    	<jsp:include page="/control/loginControl.jsp"/>
         <nav class="nav nav-aberta">
              <jsp:include page="/componets/menu.html"/>
         </nav>
@@ -36,22 +37,22 @@
             	</div>
             	
             	<%
-            		Vector<Setor> cc  = (Vector)session.getAttribute("setores");
+            		Vector<Categoria> cc  = (Vector)session.getAttribute("categoria");
             	
             		for(int i = 0; i < cc.size();i++ ){
             	%>	<a id="content-box-link" href="/pedidos.jsp">
-                		<h2><%=cc.get(i).getNomeSetor() %></h2>
-                		<p><%=cc.get(i).qtdFuncionarioSetor(cc.get(i).getIdSetor())%> : Funcionarios</p>
-                		<p>00: pedidos</p>
+                		<h2><%=cc.get(i).getNomeCategoria() %></h2>
+                		<p><%=cc.get(i).qtdFornecedor(cc.get(i).getIdCategoria())%> : Fornecedores</p>
+                		
                </a> 
 				<%} %>
             	
                 <div id="id01" class="modal">
-					  <jsp:include page="/componets/SetorForm.html"/>
+					  <jsp:include page="/componets/CateForm.html"/>
 				</div>
 				
 				<div id="id02" class="modal">
-					  <jsp:include page="/componets/FuncionarioForm.jsp"/>
+					  <%-- <jsp:include page="/componets/FuncionarioForm.jsp"/>--%>
 				</div>
             </div>
             <%!boolean cadastrado = false; %>

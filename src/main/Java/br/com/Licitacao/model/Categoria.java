@@ -17,7 +17,6 @@ public class Categoria {
 	public void adicionarCategoria(Categoria addCategoria) {
 		try {
 			Categoria novaCategoria = new Categoria();
-			novaCategoria.setIdCategoria(addCategoria.getIdCategoria());
 			novaCategoria.setNomeCategoria(addCategoria.getNomeCategoria());
 			catDAO.addCategoria(novaCategoria);
 		}catch (Exception e) {
@@ -32,6 +31,10 @@ public class Categoria {
 	
 	public void editarCategoria(int idCategoria) {
 		
+	}
+	
+	public int qtdFornecedor(int idcat){
+		return catDAO.fornecedorSizeSetror(idcat);
 	}
 	
 	public Vector<Categoria> listaCategorias(){
