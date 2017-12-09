@@ -11,7 +11,7 @@ public class Fornecedor {
 	private Contato contatoFornecedor = new Contato();
 	private CNPJ cnpjFornecedor = new CNPJ();
 	private Login loginFornecedor = new Login();
-	private Boolean aprovadoFornecedor = false;
+	private String aprovadoFornecedor = "pedende";
 	private float notaFornecedor;
 	private Categoria categoriaFornecedor = new Categoria();
 	private int nivel = 2;
@@ -59,6 +59,12 @@ public class Fornecedor {
 	public Vector<Fornecedor> listar(){
 		return fornecDAO.getLista();
 	}
+	public Vector<Fornecedor> fornecedoresRecursados(){
+		return fornecDAO.fornecedoresRecursados();
+	}
+	public Vector<Fornecedor> fornecedoresPorCategoria(int idCat){
+		return fornecDAO.fornecedoresPorCategoria(idCat);
+	}
 	
 	
 	
@@ -87,8 +93,8 @@ public class Fornecedor {
 	public void setLoginFornecedor(Login loginFornecedor) {
 		this.loginFornecedor = loginFornecedor;
 	}
-	public Boolean getAprovadoFornecedor() { return aprovadoFornecedor; }
-	public void setAprovadoFornecedor(Boolean aprovadoFornecedor) {
+	public String getAprovadoFornecedor() { return aprovadoFornecedor; }
+	public void setAprovadoFornecedor(String aprovadoFornecedor) {
 		this.aprovadoFornecedor = aprovadoFornecedor;
 	}
 	public float getNotaFornecedor() { return notaFornecedor; }

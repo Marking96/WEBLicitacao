@@ -9,9 +9,14 @@
 	<%
 		Categoria categoria = new Categoria();
 		Vector<Categoria> categorias;
-		
 		categorias = categoria.listaCategorias();
 		session.setAttribute("categoria", new Categoria().listaCategorias());
+		
+		Fornecedor fornecedor = new Fornecedor();
+		Vector<Fornecedor> fornecedores;
+		fornecedores = fornecedor.fornecedoresRecursados();
+		session.setAttribute("pendente", new Fornecedor().fornecedoresRecursados());
+		
 	%>
 </body>
 </html>

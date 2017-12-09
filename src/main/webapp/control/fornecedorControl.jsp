@@ -15,6 +15,7 @@
 		
 		fornecedor.cadastrarFornecedor(fornecedor);
 		
+		
 	%>
 </body>
 </html>

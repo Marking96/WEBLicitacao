@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    <%@ page import="java.util.*, br.com.Licitacao.model.*" %>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -14,6 +16,7 @@
     <script src="<c:url value="/assets/js/jQuery.js"/>"></script>
 </head>
     <body>
+    <jsp:include page="/control/listaFControljsp.jsp"/>
         <nav class="nav nav-aberta">
              <jsp:include page="/componets/menu.jsp"/>
         </nav>
@@ -29,37 +32,26 @@
 	                <table class="tb-licitacao" style="width:100%" id="tb1">
 	                    <thead>
 	                        <tr>
-	                            <th>N°</th>
-	                            <th width="300px">Licitação</th>
-	                            <th width="100px">Setor</th>
-	                            <th width="100px" >Data</th>
-	                            <th>Aprova</th>
+	                            <th width="20px">N°</th>
+	                            <th width="300px">Fornecedor</th>
+	                            <th width="100px">CNPJ</th>
+	                            <th width="100px" >Nota</th>
 	                        </tr>
 	                    </thead>
 	                    <tbody>
 	                        
-	                    
+	                    <%
+		            		Vector<Fornecedor> cc  = (Vector)session.getAttribute("fornecedores");
+		            	
+		            		for(int i = 0; i < cc.size();i++ ){
+            			%>
 	                    <tr>
-	                        <td>1</td>
-	                        <td>ew</td>
-	                        <td></td>
-	                        <td></td>
-	                        <td></td>
+	                        <td><%=i %></td>
+	                        <td><%=cc.get(i).getNomeFornecedor() %></td>
+	                        <td><%=cc.get(i).getCnpjFornecedor().getCnpj() %></td>
+	                        <td><%=cc.get(i).getNotaFornecedor() %></td>
 	                    </tr>
-	                    <tr>
-	                        <td>2</td>
-	                        <td>22eq</td>
-	                        <td></td>
-	                        <td></td>
-	                        <td></td>
-	                    </tr>
-	                    <tr>
-	                        <td>3</td>
-	                        <td>wew</td>
-	                        <td></td>
-	                        <td></td>
-	                        <td></td>
-	                    </tr>
+	                    <%} %>
 	                </tbody>
 	                </table>
 	                <br>

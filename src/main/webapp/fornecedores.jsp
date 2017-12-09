@@ -18,7 +18,7 @@
     <body>
     	<jsp:include page="/control/loginControl.jsp"/>
         <nav class="nav nav-aberta">
-             <jsp:include page="/componets/menu.html"/>
+             <jsp:include page="/componets/menu.jsp"/>
         </nav>
         <div class="contentudo">
       
@@ -40,7 +40,7 @@
             		Vector<Categoria> cc  = (Vector)session.getAttribute("categoria");
             	
             		for(int i = 0; i < cc.size();i++ ){
-            	%>	<a id="content-box-link" href="/pedidos.jsp">
+            	%>	<a id="content-box-link" href="listaFornecedores.jsp?idCat=<%=cc.get(i).getIdCategoria()%>">
                 		<h2><%=cc.get(i).getNomeCategoria() %></h2>
                 		<p><%=cc.get(i).qtdFornecedor(cc.get(i).getIdCategoria())%> : Fornecedores</p>
                 		
@@ -52,7 +52,7 @@
 				</div>
 				
 				<div id="id02" class="modal">
-					  <%-- <jsp:include page="/componets/FuncionarioForm.jsp"/>--%>
+					  <jsp:include page="/componets/chekarFornecedor.jsp"/>
 				</div>
             </div>
             <%!boolean cadastrado = false; %>

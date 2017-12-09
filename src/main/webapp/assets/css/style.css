@@ -532,3 +532,29 @@ span.psw {
     width: 2%;
     display: inline-block;   
 }
+
+
+#formFun table, td, th {
+    
+    border: 1px solid #333;
+    border-collapse: collapse;
+    
+}
+
+#formFun .tb-licitacao th{
+    padding-top: 8px;
+    padding-bottom: 9px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+ #formFun td, th {
+     border: 1px solid #ddd;
+     padding: 2px 0 0 6px;
+     text-align: left;
+}
+
+#formFun select{
+    font-size: 10px;
+    padding-left: 2px;
+}

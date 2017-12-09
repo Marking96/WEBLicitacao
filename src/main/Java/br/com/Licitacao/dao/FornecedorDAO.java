@@ -49,7 +49,7 @@ public class FornecedorDAO {
 			//stmt.setString(12, fornecedor.getEndFornecedor().getCep());
 			//stmt.setString(3, fornecedor.getLoginFornecedor().getLogin());
 			//stmt.setString(4, fornecedor.getLoginFornecedor().getSenha());
-			stmt.setBoolean(3, fornecedor.getAprovadoFornecedor());
+			stmt.setString(3, fornecedor.getAprovadoFornecedor());
 			stmt.setFloat(4, fornecedor.getNotaFornecedor());
 			stmt.setInt(5, fornecedor.getCategoriaFornecedor().getIdCategoria());
 			
@@ -73,7 +73,61 @@ public class FornecedorDAO {
 				Fornecedor fornecedo = new Fornecedor();
 				fornecedo.setNomeFornecedor(rs.getString("nomeForn"));
 				fornecedo.setIdFornecedor(rs.getInt("idForn"));
-				fornecedo.setAprovadoFornecedor(rs.getBoolean("aprovado"));
+				fornecedo.setAprovadoFornecedor(rs.getString("aprovado"));
+				fornecedo.getCnpjFornecedor().setCnpj(rs.getString("cnpj"));
+				fornecedo.getCategoriaFornecedor().setIdCategoria(rs.getInt("idCat"));
+				
+				
+				fornecidores.add(fornecedo);
+			}
+		}catch (Exception e) {
+			Logger.getLogger(SetorDAO.class.getName()).log(Level.SEVERE, null, e);
+		}finally {
+			ConnectionFactory.closeConnection(con, stmt, rs);
+		}
+		return fornecidores;
+	}
+	
+	public Vector<Fornecedor> fornecedoresRecursados(){
+		Vector<Fornecedor> fornecidores = new Vector<Fornecedor>();
+		Connection con = dao.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try{
+			stmt = con.prepareStatement("SELECT * FROM fornecedor WHERE aprovado = 'pendente';");
+			rs = stmt.executeQuery();
+			while(rs.next()){
+				Fornecedor fornecedo = new Fornecedor();
+				fornecedo.setNomeFornecedor(rs.getString("nomeForn"));
+				fornecedo.setIdFornecedor(rs.getInt("idForn"));
+				fornecedo.setAprovadoFornecedor(rs.getString("aprovado"));
+				fornecedo.getCnpjFornecedor().setCnpj(rs.getString("cnpj"));
+				fornecedo.getCategoriaFornecedor().setIdCategoria(rs.getInt("idCat"));
+				
+				
+				fornecidores.add(fornecedo);
+			}
+		}catch (Exception e) {
+			Logger.getLogger(SetorDAO.class.getName()).log(Level.SEVERE, null, e);
+		}finally {
+			ConnectionFactory.closeConnection(con, stmt, rs);
+		}
+		return fornecidores;
+	}
+	
+	public Vector<Fornecedor> fornecedoresPorCategoria(int idCat){
+		Vector<Fornecedor> fornecidores = new Vector<Fornecedor>();
+		Connection con = dao.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try{
+			stmt = con.prepareStatement("SELECT * FROM fornecedor WHERE idCat = "+idCat);
+			rs = stmt.executeQuery();
+			while(rs.next()){
+				Fornecedor fornecedo = new Fornecedor();
+				fornecedo.setNomeFornecedor(rs.getString("nomeForn"));
+				fornecedo.setIdFornecedor(rs.getInt("idForn"));
+				fornecedo.setAprovadoFornecedor(rs.getString("aprovado"));
 				fornecedo.getCnpjFornecedor().setCnpj(rs.getString("cnpj"));
 				fornecedo.getCategoriaFornecedor().setIdCategoria(rs.getInt("idCat"));
 				

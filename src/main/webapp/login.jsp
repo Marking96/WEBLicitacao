@@ -35,7 +35,7 @@
                         <h2>Login</h2>
                     </div>
                                    
-                    <form action="" method="POST">
+                    <form action="" method="get">
                         <div class="email-login">
                             <span>
                                  <i class="icon-l medium material-icons">account_circle</i>

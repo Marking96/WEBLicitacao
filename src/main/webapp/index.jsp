@@ -15,7 +15,7 @@
 </head>
     <body>
         <nav class="nav nav-aberta">
-             <jsp:include page="/componets/menu.html"/>
+             <jsp:include page="/componets/menu.jsp"/>
         </nav>
         <div class="contentudo">
       
@@ -24,6 +24,11 @@
         <section>
             <div class="content">
                 <h2>Licitação</h2>
+                <%
+                	out.print(request.getRequestURL());
+                	
+                	out.print(request.getRequestURI());
+                %>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus voluptate suscipit debitis quod. Consequuntur, iusto! Autem similique, animi fugiat sunt sed quos! Harum, doloremque! Rem sapiente corporis saepe at aut.</p>
             </div>
             <div class="content">
