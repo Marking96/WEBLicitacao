@@ -39,7 +39,7 @@
             		Vector<Setor> cc  = (Vector)session.getAttribute("setores");
             	
             		for(int i = 0; i < cc.size();i++ ){
-            	%>	<a id="content-box-link" href="/pedidos.jsp">
+            	%>	<a id="content-box-link" href="pedidos.jsp?idSetor=<%= cc.get(i).getIdSetor() %>">
                 		<h2><%=cc.get(i).getNomeSetor() %></h2>
                 		<p><%=cc.get(i).qtdFuncionarioSetor(cc.get(i).getIdSetor())%> : Funcionarios</p>
                 		<p>00: pedidos</p>

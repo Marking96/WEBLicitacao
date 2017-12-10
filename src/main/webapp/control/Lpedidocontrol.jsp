@@ -10,6 +10,8 @@
 		Vector<Pedido> pedidos;
 		pedidos = pedido.pedidos();
 		session.setAttribute("pedidos", new Pedido().pedidos());
+		session.setAttribute("pedidosS", new Pedido().pedidosPorSetor(Integer.parseInt(request.getParameter("idSetor"))));
+		//session.setAttribute("pedidosID", new Pedido().pedidosPorSetor(Integer.parseInt(request.getParameter("Lpedido"))));
 	%>
 </body>
 </html>

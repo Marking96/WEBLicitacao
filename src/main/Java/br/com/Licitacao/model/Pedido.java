@@ -36,6 +36,14 @@ public class Pedido {
 	public Vector<Pedido> pedidos(){
 		return dao.getLista();
 	}
+	
+	public Vector<Pedido> pedidosPorSetor(int id){
+		return dao.pedidosPorSetor(id);
+	}
+	
+	public Pedido pedidoporID(int id){
+		return dao.pedidosPorid(id);
+	}
 	//metodos getters e setters
 	
 	public Item getItemPedido() { return itemPedido; }

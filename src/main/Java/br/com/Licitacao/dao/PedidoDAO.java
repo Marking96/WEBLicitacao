@@ -73,23 +73,51 @@ INSERT INTO `pedidoItem`(`idSetor`, `aprovado`, `idItem`) VALUES (1,false,1);*/
 		return pedidos;
 	}
 	
-	/*public Pedido getPedido(int id){
+	public Vector<Pedido> pedidosPorSetor(int id){
+		Vector<Pedido> pedidos = new Vector<Pedido>();
+		Connection con = dao.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try{
+			stmt = con.prepareStatement("SELECT * FROM pedidoItem WHERE idSetor ="+id);
+			rs = stmt.executeQuery();
+			while(rs.next()){
+				Pedido pedido = new Pedido();
+				pedido.setIdPedido(rs.getInt("idPi"));
+				pedido.setItemPedido(new Item().getItem(rs.getInt("idItem")));
+				pedido.setIdSetor(new Setor().getSetor(rs.getInt("idSetor")));
+				pedidos.add(pedido);
+			}
+		}catch (Exception e) {
+			Logger.getLogger(SetorDAO.class.getName()).log(Level.SEVERE, null, e);
+		}finally {
+			ConnectionFactory.closeConnection(con, stmt, rs);
+		}
+		return pedidos;
+	}
+	
+	public Pedido pedidosPorid(int id){
+		
 		Connection con = dao.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         
         try {
         	Pedido pedido = new Pedido();
-            stmt = con.prepareStatement("SELECT `idPi`, `idSetor`, `aprovado`, `idItem` FROM `pedidoItem` WHERE `idPi`="+id);
-            rs = stmt.executeQuery();
-            if (rs.next()) {
-            	pedido.setItemPedido();
-            }
-            return pedido;
-            }catch (Exception e) {
-            	throw new RuntimeException(e);
-			}finally {
-				dao.closeConnection(con, stmt, rs);
-			}
-	}*/
+			stmt = con.prepareStatement("SELECT * FROM pedidoItem WHERE idPi ="+id);
+			rs = stmt.executeQuery();
+			 if (rs.next()) {
+				
+				pedido.setIdPedido(rs.getInt("idPi"));
+				pedido.setItemPedido(new Item().getItem(rs.getInt("idItem")));
+				pedido.setIdSetor(new Setor().getSetor(rs.getInt("idSetor")));
+			 }	
+				return pedido;
+		}catch (Exception e) {
+			throw new RuntimeException(e);
+		}finally {
+			ConnectionFactory.closeConnection(con, stmt, rs);
+		}
+		
+	}
 }
