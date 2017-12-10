@@ -1,5 +1,7 @@
 package br.com.Licitacao.model;
 
+import java.util.Vector;
+
 import br.com.Licitacao.dao.ProdutoDAO;
 
 public class Produto {
@@ -31,7 +33,13 @@ public class Produto {
 		
 	}
 	
+	public Vector <Produto> listarProduto(){
+		return prodDAO.getLista();
+	}
 	
+	public Produto getProduto(int id){
+		return prodDAO.getProduto(id);
+	}
 	//metodos getters e setters
 	public int getIdProduto() { return idProduto; }
 	public void setIdProduto(int idProduto) {

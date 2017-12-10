@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    <%@ page import="java.util.*, br.com.Licitacao.model.*" %>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -14,8 +15,10 @@
     <script src="<c:url value="/assets/js/jQuery.js"/>"></script>
 </head>
     <body>
+    <jsp:include page="/control/loginControl.jsp"/>
+    <jsp:include page="/control/Lpedidocontrol.jsp"/>
         <nav class="nav nav-aberta">
-             <jsp:include page="/componets/menu.jsp"/>
+             <jsp:include page="/Funcionario/componets/menu.jsp"/>
         </nav>
         <div class="contentudo">
       
@@ -34,36 +37,26 @@
 	                    <thead>
 	                        <tr>
 	                            <th>N°</th>
-	                            <th width="300px">Licitação</th>
+	                            <th width="300px">Produto</th>
 	                            <th width="100px">Setor</th>
-	                            <th width="100px" >Data</th>
-	                            <th>Aprova</th>
+	                            <th width="100px" >Quantidade</th>
+	                            <th>Descrição</th>
 	                        </tr>
 	                    </thead>
 	                    <tbody>
-	                        
-	                    
+	                  <%
+		            		Vector<Pedido> cc  = (Vector)session.getAttribute("pedidos");
+		            	
+		            		for(int i = 0; i < cc.size();i++ ){
+            			%>
 	                    <tr>
-	                        <td>1</td>
-	                        <td>ew</td>
-	                        <td></td>
-	                        <td></td>
-	                        <td></td>
+	                        <td><%=i %></td>
+	                        <td><%=cc.get(i).getItemPedido().getIdProduto().getNomeProduto() %></td>
+	                        <td><%=cc.get(i).getIdSetor().getNomeSetor() %></td>
+	                        <td><%=cc.get(i).getItemPedido().getQuantidade()%></td>
+	                        <td><%=cc.get(i).getItemPedido().getIdProduto().getDescricaoProduto() %></td>
 	                    </tr>
-	                    <tr>
-	                        <td>2</td>
-	                        <td>22eq</td>
-	                        <td></td>
-	                        <td></td>
-	                        <td></td>
-	                    </tr>
-	                    <tr>
-	                        <td>3</td>
-	                        <td>wew</td>
-	                        <td></td>
-	                        <td></td>
-	                        <td></td>
-	                    </tr>
+	                    <%} %>
 	                </tbody>
 	                </table>
 	                <br>
@@ -74,7 +67,7 @@
 				</div>
 				
 				<div id="id02" class="modal">
-					  <jsp:include page="/componets/FuncionarioForm.jsp"/>
+					  <jsp:include page="/componets/pedidoForm.jsp"/>
 				</div>
             </div>
         </section>

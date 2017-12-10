@@ -1,9 +1,11 @@
 package br.com.Licitacao.dao;
 
-import com.mysql.jdbc.Connection;
 import br.com.Licitacao.conexao.ConnectionFactory;
+import br.com.Licitacao.model.Item;
 import br.com.Licitacao.model.Produto;
+
 import java.sql.*;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -26,7 +28,7 @@ public class ProdutoDAO {
 
 	
 	public void adicionarProduto(Produto produto) throws SQLException, ClassNotFoundException {
-		Connection con = (Connection) dao.getConnection();
+		Connection con = dao.getConnection();
 		PreparedStatement stmt = null;
 		
 		try {
@@ -47,5 +49,49 @@ public class ProdutoDAO {
 		}
 	}
 	
+	public Vector<Produto> getLista(){
+		Vector<Produto> produtos = new Vector<Produto>();
+		Connection con = dao.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try{
+			stmt = con.prepareStatement("SELECT * FROM produto");
+			rs = stmt.executeQuery();
+			while(rs.next()){
+				Produto produto = new Produto();
+				produto.setNomeProduto(rs.getString("nomeProduto"));
+				produto.setIdProduto(rs.getInt("idproduto"));
+				produto.setDescricaoProduto(rs.getString("descricao"));
+				produtos.add(produto);
+			}
+		}catch (Exception e) {
+			Logger.getLogger(SetorDAO.class.getName()).log(Level.SEVERE, null, e);
+		}finally {
+			ConnectionFactory.closeConnection(con, stmt, rs);
+		}
+		return produtos;
+	}
+	
+	public Produto getProduto(int id){
+		Connection con = dao.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        try {
+        	Produto produto = new Produto();
+            stmt = con.prepareStatement("SELECT * FROM `produto` WHERE `idproduto` = "+id);
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+            	produto.setIdProduto(rs.getInt("idproduto"));
+            	produto.setDescricaoProduto(rs.getString("descricao"));
+            	produto.setNomeProduto(rs.getString("nomeProduto"));
+            }
+            return produto;
+            }catch (Exception e) {
+            	throw new RuntimeException(e);
+			}finally {
+				ConnectionFactory.closeConnection(con, stmt, rs);
+			}
+	}
 
 }

@@ -86,5 +86,25 @@ public class SetorDAO {
 		}
 		return quantidade;
 	}
-
+	
+	public Setor getSetor(int id){
+		Connection con = dao.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        try {
+        	Setor setor = new Setor();
+            stmt = con.prepareStatement("SELECT * FROM `setor` WHERE `idSetor`="+id);
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+            	setor.setIdSetor(rs.getInt("idSetor"));
+            	setor.setNomeSetor(rs.getString("nomeSetor"));
+            }
+            return setor;
+            }catch (Exception e) {
+            	throw new RuntimeException(e);
+			}finally {
+				ConnectionFactory.closeConnection(con, stmt, rs);
+			}
+	}
 }

@@ -9,7 +9,7 @@
                             <i class="material-icons">home</i>Home</a>
                     </li>
                     <li>
-                        <a href="/Funcionario/pedidos.jsp">
+                        <a href="../Funcionario/pedidos.jsp">
                             <i class="material-icons">mode_edit</i>Pedidos</a>
                     </li>
                     <li>

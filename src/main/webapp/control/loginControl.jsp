@@ -17,6 +17,10 @@
 		fornecedores = fornecedor.fornecedoresRecursados();
 		session.setAttribute("pendente", new Fornecedor().fornecedoresRecursados());
 		
+		Produto produto = new Produto();
+		Vector<Produto> produtos;
+		produtos = produto.listarProduto();
+		session.setAttribute("produtos", new Produto().listarProduto());
 	%>
 </body>
 </html>

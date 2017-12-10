@@ -38,7 +38,9 @@ public class Setor implements Serializable{
 	public int qtdFuncionarioSetor(int idSetor){
 		return setorDAO.funcionarioSizeSetror(idSetor);
 	}
-	
+	public Setor getSetor(int id){
+		return setorDAO.getSetor(id);
+	}
 	//metodos gette e setters
 	public int getIdSetor() { return idSetor; }
 	public void setIdSetor(int idSetor) {

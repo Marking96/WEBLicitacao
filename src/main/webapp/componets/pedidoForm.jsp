@@ -5,26 +5,19 @@
 	</div>
 	<div class="container">
 		<h3>Novo Funcionario</h3>
-		<label> Nome* </label><input type="text" name="Fnome" required>
-		<br><label> CPF* </label><input type="text" name="Fcpf" onkeyup="maskIt(this,event,'###.###.###-##')" required>
-		<br><label> Email* </label><input type="text"  name="Femail" onblur="validacaoEmail(Femail)"><div id="msgemail"></div>
-		<br><label> Telefone* </label><input type="text" name="Ftele" onkeyup="maskIt(this,event,'(##)####-####')">
-		<br><label> Celular </label><input type="text"name="fCel" onkeyup="maskIt(this,event,'(##)####-####')">
-		<br><label> Rua </label><input type="text"name="Frua" >
-		<br><label> Bairro </label><input type="text"name="Fbairo" >
-		<br><label>Setor </label><select name="setor" required>
+		
+		<br><label>Setor </label><select name="pedido" required>
 				<%
-            		Vector<Setor> cc  = (Vector)session.getAttribute("setores");
+            		Vector<Produto> cc  = (Vector)session.getAttribute("produtos");
             	
             		for(int i = 0; i < cc.size();i++ ){
             	%>	
-                		<option value="<%=cc.get(i).getIdSetor()%>"><%=cc.get(i).getNomeSetor() %></option>
+                		 <option value="<%=cc.get(i).getIdProduto()%>"><%=cc.get(i).getNomeProduto()%></option>
 				<%} %>
 				
 		</select>
 		
-		<br><label> Login* </label><input type="text"name="Flogin" required>
-		<br><label> Senha* </label><input type="password" name="Fsenha" required>
+		<br><label> Quantidade </label><input type="number"name="qtdPro" required>
 		<button id="btnsalva" type="submit">Salva</button>
 	</div>
 		<div class="container" style="background-color:#f1f1f1">
